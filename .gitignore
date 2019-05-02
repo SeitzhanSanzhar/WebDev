@@ -1,0 +1,10 @@
+#dependencies
+/node_modules
+
+bin/
+Include/
+Lib/
+Scripts/
+pip-selfcheck.json
+pyvenv.cfg
+.idea/
