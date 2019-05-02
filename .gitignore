@@ -193,7 +193,9 @@ bin/
 include/            
 lib/                
 .idea/
-Scripts/
+.Scripts/
+.Bin/
+.Lib/
 pip-selfcheck.json
 package-lock.json
 site-packages/
