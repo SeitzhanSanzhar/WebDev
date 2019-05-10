@@ -25,7 +25,7 @@
       <ng-container *ngIf="loading">
         <div>
           <div *ngFor="let c of posts" class="data">
-            Owner of the post: {{c.created_by}}
+            Owner of the post: {{c.created_by.username}}
             <br/>
             <ng-container *ngIf = "c.id == editId">
               <input type="text" [(ngModel)]="c.title"/>
@@ -39,7 +39,15 @@
               {{c.body}}
               <br/>
             </ng-container>
-
+            <br/>
+            <ng-container>
+              <ul>
+                <li>Book name: {{c.book_info.name}}</li>
+                <li>Author: {{c.book_info.author}}</li>
+                <li>Year: {{c.book_info.year}}</li>
+                <li>Author: {{c.book_info.genre}}</li>
+              </ul>
+            </ng-container>
             <span style="color: blue" (click)="makeEditable(c.id)"> Изменить</span>
             <span style="color: green" (click)="putDetailPost(c)"> Сохранить </span>
             <span style="color: red" (click)="deleteItem(c)"> Удалить</span>

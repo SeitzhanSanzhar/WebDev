@@ -76,23 +76,23 @@ export class AppComponent implements OnInit {
     }
   }
   newPost() {
-    if ((this.newtitle === ' ' || this.newbody === ' ')) { return; }
-    const newPost = new Post();
-    newPost.title = this.newtitle;
-    newPost.body = this.newbody;
-    const book = new Book();
-    book.name = 'a';
-    book.author = 'a';
-    book.year = 2007;
-    book.genre = 'a';
-    newPost.book_info = book;
-    newPost.created_by = 1;
-
-    this.apiService.createPost(newPost).then( res => {
-            this.posts.push(res);
-            alert('done:)');
-    });
-    this.posts.push(newPost);
+    // if ((this.newtitle === ' ' || this.newbody === ' ')) { return; }
+    // const newPost = new Post();
+    // newPost.title = this.newtitle;
+    // newPost.body = this.newbody;
+    // const book = new Book();
+    // book.name = 'a';
+    // book.author = 'a';
+    // book.year = 2007;
+    // book.genre = 'a';
+    // newPost.book_info = book;
+    // newPost.created_by = 1;
+    //
+    // this.apiService.createPost(newPost).then( res => {
+    //         this.posts.push(res);
+    //         alert('done:)');
+    // });
+    // this.posts.push(newPost);
   }
   // newContact() {
   //   if (this.newname !== '' && this.newphone !== '') {

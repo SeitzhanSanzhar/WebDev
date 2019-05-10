@@ -12,4 +12,4 @@ class Post(models.Model):
     body = models.CharField(max_length=500,default="Klassika")
     created_by = models.ForeignKey(User,on_delete=None)
     created_at = models.DateTimeField(auto_now_add=True)
-    book_info = models.ManyToManyField(Book)
+    book_info = models.ForeignKey(Book,on_delete=None)

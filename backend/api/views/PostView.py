@@ -1,11 +1,13 @@
 from api.serializers import *
 from api.models import *
 from rest_framework import generics
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.request import Request
+from rest_framework.permissions import IsAuthenticated,AllowAny
 from rest_framework.response import Response
 
 class PostView(generics.ListCreateAPIView):
+    permission_classes = [AllowAny]
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
@@ -14,6 +16,7 @@ class BookView(generics.ListCreateAPIView):
     serializer_class = BookSerializer
 
 @api_view(['GET','POST','DELETE','PUT'])
+@permission_classes((IsAuthenticated, ))
 def post_detail(request, pk) :
      try:
          res = Post.objects.get(id=pk)
