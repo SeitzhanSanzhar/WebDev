@@ -9,15 +9,15 @@ class ListCreateBooks(generics.ListCreateAPIView):
     permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
-        return Book.objects.filter(added_by=self.request.user)
+        return Book.objects.filter(created_by=self.request.user)
 
     def perform_create(self, serializer):
-        serializer.save(added_by=self.request.user)
+        serializer.save(created_by=self.request.user)
 
 
-class RetrieveUpdateDestroyBook(generics.RetrieveUpdateDestroyAPIView):
+class RetrieveUpdateDestroyBooks(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = BookSerializer
     permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
-        return Book.objects.filter(added_by=self.request.user)
+        return Book.objects.filter(created_by=self.request.user)

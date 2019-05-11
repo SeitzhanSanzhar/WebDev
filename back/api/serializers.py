@@ -13,7 +13,7 @@ class BookSerializer(serializers.ModelSerializer):
     name = serializers.CharField(max_length=200, required=True)
     author = serializers.CharField(max_length=200, required=True)
     year = serializers.IntegerField(required=True)
-    added_by = UserSerializer(read_only=True)
+    created_by = UserSerializer(read_only=True)
 
     class Meta:
         model = Book
@@ -22,9 +22,10 @@ class BookSerializer(serializers.ModelSerializer):
 
 class PostSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
-    title = serializers.CharField(max_length=200, required=True)
-    created_by = UserSerializer(read_only=True)
-    book = BookSerializer(read_only=True)
+
+    # Use id references for testing. Change back to proper serializers when done
+    book_id = serializers.IntegerField(write_only=True)
+    user_id = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = Post
