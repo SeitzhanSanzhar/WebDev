@@ -7,8 +7,8 @@ from rest_framework.response import Response
 from django.contrib.auth.forms import UserChangeForm
 from api.forms import EditProfile
 
-class MyPosts(generics.ListCreateAPIView):
 
+class MyPosts(generics.ListCreateAPIView):
 	def get_queryset(self):
 		return Post.objects.filter(created_by=self.request.user)
 
@@ -17,6 +17,7 @@ class MyPosts(generics.ListCreateAPIView):
 
 	def perform_create(self, serializer):
 		serializer.save(created_by=self.request.user)
+
 
 def edit_profile(request):
 	if request.method == 'POST':
