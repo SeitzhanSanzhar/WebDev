@@ -10,4 +10,5 @@ urlpatterns = [
     path('login/',login),
     path('logout/',logout),
     path('home/', MyPosts.as_view()),
+    path('home/edit/', edit_profile),
 ]
