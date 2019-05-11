@@ -5,12 +5,8 @@ from .models import *
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-<<<<<<< HEAD
         fields = ('id', 'username', 'email')
 
-=======
-        fields = ('__all__')
->>>>>>> a2740318152ca2de67472b52227db542ad6de913
 
 class BookSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
