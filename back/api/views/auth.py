@@ -8,12 +8,15 @@ from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework.authtoken.models import Token
 from rest_framework.permissions import IsAuthenticated, AllowAny
 
-class UserList(generics.RetrieveUpdateDestroyAPIView):
+
+class ListUsers(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    # permission_classes = (IsAuthenticated, )
+
 
 @api_view(['POST'])
-def login(request) :
+def login(request):
     serializer = AuthTokenSerializer(data=request.data)
     serializer.is_valid(raise_exception=True)
     user = serializer.validated_data.get('user')
@@ -21,7 +24,12 @@ def login(request) :
     return Response({'token': token.key})
 
 
-@api_view(['POST'])
+@api_view(['DELETE'])
 def logout(request):
     request.auth.delete()
-    return Response(status=status.HTTP_200_OK)
+    return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+
+
+
