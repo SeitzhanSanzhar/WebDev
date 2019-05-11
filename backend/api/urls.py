@@ -9,4 +9,5 @@ urlpatterns = [
     path('User/<int:pk>/', UserList.as_view()),
     path('login/',login),
     path('logout/',logout),
+    path('home/', MyPosts.as_view()),
 ]
