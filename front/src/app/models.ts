@@ -14,7 +14,7 @@ export class Contact {
 
 export class User {
   id: number;
-  login: string;
+  username: string;
   email: string;
 }
 
@@ -29,7 +29,7 @@ export class Post {
   id: number;
   title: string;
   body: string;
-  created_by: number;
+  created_by: User;
   book_info: Book;
   created_at: string;
 }
