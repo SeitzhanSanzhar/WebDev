@@ -1,5 +1,7 @@
 from django.urls import path
 from .views import *
+from django.urls import path, include
+
 
 urlpatterns = [
     # Working views for posts
@@ -13,6 +15,7 @@ urlpatterns = [
     # Working auth urls
     path('login/', login),
     path('logout/', logout),
+    path('signup/', Signup.as_view()),
     path('users/', ListUsers.as_view()),
 
 

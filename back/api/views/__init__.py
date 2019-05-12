@@ -3,5 +3,5 @@ from .post_views import *
 from .auth import *
 
 
-from .home import *
+from .home_views import *
 

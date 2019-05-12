@@ -8,6 +8,7 @@ from django.contrib.auth.forms import UserChangeForm
 from api.forms import EditProfile
 
 
+# Надо добавить сюда две вьюшки написанные через CBV
 class MyPosts(generics.ListCreateAPIView):
 	def get_queryset(self):
 		return Post.objects.filter(created_by=self.request.user)
