@@ -22,10 +22,12 @@ from django.db.utils import IntegrityError
 #     serializer_class = UserSerializer
 
 
-# @method_decorator(login_required(login_url='login/'), name='dispatch')
 class ListUsers(APIView):
     def get(self, request):
-        return Response(UserSerializer(User.objects.all(), many=True).data, status=status.HTTP_200_OK)
+        if request.user.is_authencated:
+            return Response(UserSerializer(User.objects.all(), many=True).data, status=status.HTTP_200_OK)
+        else:
+            return Response(status=status.HTTP_403_FORBIDDEN)
 
 
 class Signup(APIView):
