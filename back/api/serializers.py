@@ -37,8 +37,9 @@ class BookSerializer(serializers.ModelSerializer):
 
 class PostSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
-    book_id = serializers.IntegerField(write_only=True)
-    user_id = serializers.IntegerField(write_only=True)
+    book_id = serializers.IntegerField(read_only=True)
+    user_id = serializers.IntegerField(read_only=True)
+    image = serializers.ImageField(read_only=True)
 
     class Meta:
         model = Post
