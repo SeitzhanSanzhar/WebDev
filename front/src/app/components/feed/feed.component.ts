@@ -19,4 +19,9 @@ export class FeedComponent implements OnInit {
     });
   }
 
+  contact(id: number) {
+    this.dataService.contactById(id);
+    alert('Request was send!');
+  }
+
 }

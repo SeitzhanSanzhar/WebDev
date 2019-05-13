@@ -13,4 +13,10 @@ export class DataService {
     return this.apiService.get('http://localhost:8000/api/posts/',  {});
   }
 
+  contactById(id: number) {
+    return this.apiService.post('http://localhost:8000/api/send_email/', {
+      id: id
+    });
+  }
+
 }

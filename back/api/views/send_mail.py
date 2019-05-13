@@ -9,6 +9,7 @@ from api.serializers import UserSerializer
 from rest_framework import generics
 from rest_framework import status
 from rest_framework.response import Response
+from api.models import *
 from rest_framework.decorators import api_view
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework.authtoken.models import Token
@@ -20,4 +21,10 @@ from django.db.utils import IntegrityError
 
 @api_view(['POST'])
 def send_answer(request):
-    send_mail(':)', ':)', 'kitapswap@gmail.com', ['lejena@key-mail.net'], fail_silently=False)
+    pk = request.data.get('id')
+    user = User.objects.filter(id=pk)
+    res = ''
+    for i in user:
+        res = i.email
+    send_mail(':)', ':)', 'kitapswap@gmail.com', [res], fail_silently=False)
+    return Response('request was send')
