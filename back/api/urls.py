@@ -18,6 +18,9 @@ urlpatterns = [
     path('signup/', Signup.as_view()),
     path('users/', ListUsers.as_view()),
 
+    #mail
+    path('send_mail/', send_answer),
+
     # Home urls
     path('home/', MyPosts.as_view()),
     path('profile/', MyPosts.as_view()),
