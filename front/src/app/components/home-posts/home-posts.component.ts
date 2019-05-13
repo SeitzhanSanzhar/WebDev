@@ -10,14 +10,20 @@ import {UserDataService} from "../../services/user-data.service";
 export class HomePostsComponent implements OnInit {
 
   public ownPosts: Post[] = [];
+  public editId: number;
 
   constructor(private userDataService: UserDataService) { }
 
   ngOnInit() {
+    this.editId = -1;
     this.userDataService.getOwnPosts().then(res => {
       this.ownPosts = res;
-      console.log('!')
+      console.log('!');
     });
+  }
+
+  makeEditable(id: number) {
+    this.editId = id;
   }
 
 }
