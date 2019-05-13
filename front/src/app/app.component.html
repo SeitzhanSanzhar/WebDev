@@ -1,65 +1,22 @@
-<ng-container *ngIf="!logged">
-    <div>
-      <div><input type="text" [(ngModel)]="login" /></div>
-      <div><input type="text" [(ngModel)]="password" /></div>
-      <div><button (click)="auth()">Log in</button></div>
-      <button (click)="auth()"> Registration </button>
-    </div>
-  </ng-container>
+<!--The content below is only a placeholder and can be replaced.-->
+<mat-toolbar color="primary">
+  <span>Kitap Swap</span>
 
-<div class = "alert alert-success">
-  <ng-container *ngIf="logged">
+  <!-- This fills the remaining space of the current row -->
+  <span class="example-fill-remaining-space"></span>
 
-      <ng-container>
-        <h1>Create new post</h1>
-        <input type="text" [(ngModel)]="newtitle" placeholder="title" />
-        <input type="text" [(ngModel)]="newbody" placeholder="main text"/>
-        <span style="color: green" (click)="newPost()"> Создать </span>
-      </ng-container>
-      <br/>
-      <ng-container *ngIf="!loading">
-        Loading...
-      </ng-container>
-      <br/><br/><br/>
-      <h2>Posts</h2>
-      <ng-container *ngIf="loading">
-        <div>
-          <div *ngFor="let c of posts" class="data">
-            Owner of the post: {{c.created_by.username}}
-            <br/>
-            <ng-container *ngIf = "c.id == editId">
-              <input type="text" [(ngModel)]="c.title"/>
-              <br/>
-              <input type="text" [(ngModel)]="c.body" />
-              <br/>
-            </ng-container>
-            <ng-container *ngIf = "c.id != editId">
-              {{c.title}}
-              <br/>
-              {{c.body}}
-              <br/>
-            </ng-container>
-            <br/>
-            <ng-container>
-              <ul>
-                <li>Book name: {{c.book_info.name}}</li>
-                <li>Author: {{c.book_info.author}}</li>
-                <li>Year: {{c.book_info.year}}</li>
-                <li>Author: {{c.book_info.genre}}</li>
-              </ul>
-            </ng-container>
-            <span style="color: blue" (click)="makeEditable(c.id)"> Изменить</span>
-            <span style="color: green" (click)="putDetailPost(c)"> Сохранить </span>
-            <span style="color: red" (click)="deleteItem(c)"> Удалить</span>
-          </div>
-        </div>
-      </ng-container>
+  <a mat-flat-button mat-button color="primary" routerLink="signup">Sign Up</a>
+  <a mat-flat-button mat-button color="primary" routerLink="login" routerLinkActive="active">Login</a>
 
-      <br/>
+</mat-toolbar>
 
-      <div>
-        <button (click)="logout()">Log out</button>
-      </div>
+<router-outlet></router-outlet>
 
-  </ng-container>
-</div>
+<!--<mat-toolbar color="primary">-->
+<!--  <span>Kitap Swap</span>-->
+
+<!--  &lt;!&ndash; This fills the remaining space of the current row &ndash;&gt;-->
+<!--  <span class="example-fill-remaining-space"></span>-->
+
+<!--  <span>Right Aligned Text</span>-->
+<!--</mat-toolbar>-->
