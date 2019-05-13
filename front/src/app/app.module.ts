@@ -1,15 +1,19 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {ClassProvider, NgModule} from '@angular/core';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {AuthInterceptor} from "./auth-interceptor";
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { RouterModule, Routes } from '@angular/router';
+import {LoginService} from "./services/login.service";
+import {ApiService} from "./services/api.service";
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
+// Material Components
 import {MatToolbarModule} from '@angular/material';
 import {MatButtonModule} from '@angular/material';
 import {MatStepperModule} from '@angular/material';
@@ -21,29 +25,6 @@ import {LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { HeaderComponent } from './components/header/header.component'
 
-
-const appRoutes: Routes = [
-  {
-      path: '',
-      redirectTo: 'api/login',
-      pathMatch: 'full'
-  },
-
-  {path: 'login', component: LoginComponent},
-  {path: 'signup', component: SignupComponent},
-  // { path: 'hero/:id',      component: HeroDetailComponent },
-  // {
-  //   path: 'heroes',
-  //   component: HeroListComponent,
-  //   data: { title: 'Heroes List' }
-  // },
-  // { path: '',
-  //   redirectTo: '/heroes',
-  //   pathMatch: 'full'
-  // },
-  // { path: '**', component: PageNotFoundComponent }
-];
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,14 +33,9 @@ const appRoutes: Routes = [
     HeaderComponent,
   ],
   imports: [
-    RouterModule.forRoot(
-      appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
-    ),
-
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule,
+    HttpClientModule,
 
     FormsModule,
     ReactiveFormsModule,
@@ -71,8 +47,16 @@ const appRoutes: Routes = [
     MatInputModule,
     MatCardModule,
 
+
+    AppRoutingModule
+
   ],
-  providers: [],
+  providers: [LoginService, ApiService, ApiService,
+    <ClassProvider> {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
