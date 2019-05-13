@@ -12,6 +12,7 @@ import {CreateDataService} from "../../services/create-data.service";
 export class BooksComponent implements OnInit {
 
   public ownBooks: Book[] = [];
+  edittedId: number = 0;
 
   firstFormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -34,7 +35,6 @@ export class BooksComponent implements OnInit {
   ngOnInit() {
     this.userDataService.getOwnBooks().then(res => {
       this.ownBooks = res;
-      console.log('!')
     });
   }
 
@@ -44,6 +44,24 @@ export class BooksComponent implements OnInit {
       this.thirdFormGroup.value['year'],
       this.fourthFormGroup.value['category'],
       this.fifthFormGroup.value['genre']).then(res => {this.ownBooks.push(res)});
+  }
+
+  deleteBook(bookId: number) {
+    this.createDataService.deleteBook(bookId).then( res =>
+      this.userDataService.getOwnBooks().then(r => {
+        this.ownBooks = r;
+      })
+    )
+  }
+
+  selectBook(book: Book) {
+    this.edittedId = book.id;
+  }
+
+  editBook(book: Book) {
+    this.createDataService.updateBook(book).then( res => {
+      this.edittedId = 0;
+    });
   }
 
 }

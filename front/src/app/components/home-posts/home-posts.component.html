@@ -7,9 +7,9 @@
 
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">
-      <ng-template matStepLabel>Fill out name</ng-template>
+      <ng-template matStepLabel>Give post a title</ng-template>
       <mat-form-field>
-        <input type="text" matInput placeholder="Name" formControlName="name" required>
+        <input type="text" matInput placeholder="Title" formControlName="title" required>
       </mat-form-field>
       <div>
         <button mat-button matStepperNext>Next</button>
@@ -19,9 +19,9 @@
 
   <mat-step [stepControl]="secondFormGroup">
     <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>Fill out author</ng-template>
+      <ng-template matStepLabel>Write some words</ng-template>
       <mat-form-field>
-        <input type="text" matInput placeholder="Author" formControlName="author" required>
+        <input type="text" matInput placeholder="Body" formControlName="body" required>
       </mat-form-field>
       <div>
         <button mat-button matStepperNext>Next</button>
@@ -31,36 +31,16 @@
 
   <mat-step [stepControl]="thirdFormGroup">
     <form [formGroup]="thirdFormGroup">
-      <ng-template matStepLabel>Choose the year of publication</ng-template>
+      <ng-template matStepLabel>Choose book to share</ng-template>
       <mat-form-field>
-        <input type="number" matInput placeholder="Year" formControlName="year" required>
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
+        <mat-select matInput placeholder="Book" formControlName="book" required>
+          <mat-option *ngFor="let book of ownBooks" [value]="book.id">
+            {{book.name}}
+          </mat-option>
+        </mat-select>
 
-  <mat-step [stepControl]="fourthFormGroup">
-    <form [formGroup]="fourthFormGroup">
-      <ng-template matStepLabel>Write down the category</ng-template>
-      <mat-form-field>
-        <input type="text" matInput placeholder="Category" formControlName="category" required>
       </mat-form-field>
       <div>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
-
-  <mat-step [stepControl]="fifthFormGroup">
-    <form [formGroup]="fifthFormGroup">
-      <ng-template matStepLabel>Choose genre</ng-template>
-      <mat-form-field>
-        <input type="text" matInput placeholder="Genre" formControlName="genre" required>
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
         <button mat-button matStepperNext>Next</button>
       </div>
     </form>
@@ -71,7 +51,7 @@
     <div>
       <button mat-button matStepperPrevious>Back</button>
       <button mat-button (click)="stepper.reset()">Reset</button>
-      <button mat-raised-button color="accent" (click)="createBook()">Create Book</button>
+      <button mat-raised-button color="accent" (click)="createPost()">Create Post</button>
     </div>
   </mat-step>
 
@@ -80,44 +60,64 @@
 
 <mat-divider></mat-divider>
 
+
 <ng-container>
   <div *ngFor="let post of ownPosts">
 
+    <div *ngIf="edittedId!==post.id">
+      <mat-card class="post-card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
 
-    <mat-card class="post-card">
-      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
+          <mat-card-title>{{post.title}}</mat-card-title>
+          <mat-card-subtitle>{{post.user}}</mat-card-subtitle>
 
-      <mat-card-header *ngIf="editId === post.id">
+        </mat-card-header>
+        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
 
-        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-content>
+          <p>
+            {{post.body}}
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="accent" (click)="selectPost(post)">EDIT</button>
+          <button mat-raised-button color="accent" (click)="deletePost(post.id)">DELETE</button>
+        </mat-card-actions>
+      </mat-card>
 
-        <mat-card-title> <input [ngModel]="post.title" placeholder="{{post.title}}"></mat-card-title>
-        <mat-card-subtitle> <input [ngModel]="post.body" placeholder="{{post.body}}"> </mat-card-subtitle>
+    </div>
 
-      </mat-card-header>
+  <div *ngIf="edittedId===post.id">
 
-      <mat-card-header *ngIf="editId !== post.id">
+      <mat-card class="post-card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
 
-        <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>
+            <input matInput placeholder="New title" value="{{post.title}}" [(ngModel)]="post.title">
+          </mat-card-title>
+          <mat-card-subtitle>{{post.user}}</mat-card-subtitle>
 
-        <mat-card-title> <p> {{post.title}}" </p> </mat-card-title>
-        <mat-card-subtitle> <p> {{post.body}}" </p> </mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
 
-      </mat-card-header>
+        <mat-card-content>
+          <p>
+            <input matInput placeholder="New body" value="{{post.body}}" [(ngModel)]="post.body">
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="accent" (click)="editPost(post)">UPDATE</button>
+          <button mat-raised-button color="accent" (click)="deletePost(post.id)">DELETE</button>
+        </mat-card-actions>
+      </mat-card>
 
-      <mat-card-content>
-        <p>
-          {{post.body}}
-        </p>
-      </mat-card-content>
-      <mat-card-actions>
-<!--        <button mat-button>READ</button>-->
-        <button mat-button (click)="makeEditable(post.id)">EDIT</button>
-      </mat-card-actions>
-    </mat-card>
-
-
-
-
+    </div>
   </div>
+
 </ng-container>
+
+
+
+

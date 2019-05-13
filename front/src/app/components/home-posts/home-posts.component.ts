@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Post} from "../../shared/django-models";
+import {Book, Post} from "../../shared/django-models";
 import {UserDataService} from "../../services/user-data.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {CreateDataService} from "../../services/create-data.service";
 
 @Component({
   selector: 'app-home-posts',
@@ -11,34 +12,53 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 export class HomePostsComponent implements OnInit {
 
   public ownPosts: Post[] = [];
-  public editId: number;
+  public ownBooks: Book[] = [];
+
+  edittedId: number = 0;
 
   firstFormGroup = new FormGroup({
-    name: new FormControl('', Validators.required),
+    title: new FormControl('', Validators.required),
   });
   secondFormGroup = new FormGroup({
-    author: new FormControl('', Validators.required),
+    body: new FormControl('', Validators.required),
   });
   thirdFormGroup = new FormGroup({
-    year: new FormControl('', Validators.required),
+    book: new FormControl('', Validators.required),
   });
-  fourthFormGroup = new FormGroup({
-    category: new FormControl('', Validators.required),
-  });
-  fifthFormGroup = new FormGroup({
-    genre: new FormControl('', Validators.required)});
 
-  constructor(private userDataService: UserDataService) { }
+
+  constructor(private userDataService: UserDataService, private createDataService: CreateDataService) { }
 
   ngOnInit() {
-    this.editId = -1;
     this.userDataService.getOwnPosts().then(res => {
       this.ownPosts = res;
     });
+    this.userDataService.getOwnBooks().then(res => {
+      this.ownBooks = res;
+    });
   }
 
-  makeEditable(id: number) {
-    this.editId = id;
+  createPost() {
+      this.createDataService.createPost(this.firstFormGroup.value['title'],
+      this.secondFormGroup.value['body'],
+      this.thirdFormGroup.value['book']).then(res => {this.ownPosts.push(res)});
+  }
+
+  deletePost(postId: number) {
+    this.createDataService.deletePost(postId).then( res =>
+      this.userDataService.getOwnPosts().then(r => {
+        this.ownPosts = r;
+      })
+    )
+  }
+  selectPost(post: Post) {
+    this.edittedId = post.id;
+  }
+
+  editPost(post: Post) {
+    this.createDataService.updatePost(post).then( res => {
+      this.edittedId = 0;
+    });
   }
 
 }

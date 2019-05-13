@@ -18,4 +18,4 @@ class RetrieveUpdateDestroyPosts(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
-        return Post.objects.filter(created_by=self.request.user)
+        return Post.objects.filter(user=self.request.user)

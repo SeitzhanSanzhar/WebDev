@@ -84,29 +84,60 @@
 <ng-container>
   <div *ngFor="let book of ownBooks">
 
+    <div *ngIf="edittedId!==book.id">
+      <mat-card class="book-card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
 
-    <mat-card class="book-card">
-      <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>{{book.name}}</mat-card-title>
+          <mat-card-subtitle>{{book.author}} <br> {{book.year}}</mat-card-subtitle>
 
-        <mat-card-title>{{book.name}}</mat-card-title>
-        <mat-card-subtitle>{{book.author}} ({{book.year}})</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
 
-      </mat-card-header>
-      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
+        <mat-card-content>
+          <p>
+            {{book.category}}
+            <br>
+            {{book.genre}}
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="accent" (click)="selectBook(book)">EDIT</button>
+          <button mat-raised-button color="accent" (click)="deleteBook(book.id)">DELETE</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
 
-      <mat-card-content>
-        <p>
-          {{book.category}}
-          {{book.genre}}
-        </p>
-      </mat-card-content>
-      <mat-card-actions>
-        <!--        <button mat-button>READ</button>-->
-        <button mat-button >EDIT</button>
-      </mat-card-actions>
-    </mat-card>
+    <div *ngIf="edittedId===book.id">
 
+      <mat-card class="book-card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
 
-  </div>
+          <mat-card-title>
+            <input matInput placeholder="New name" value="{{book.name}}" [(ngModel)]="book.name">
+          </mat-card-title>
+          <mat-card-subtitle>
+            <input matInput placeholder="New author" value="{{book.author}}" [(ngModel)]="book.author">
+            <input matInput type="number" placeholder="New year" value="{{book.year}}" [(ngModel)]="book.year">
+          </mat-card-subtitle>
+
+        </mat-card-header>
+        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
+
+        <mat-card-content>
+          <p>
+            <input matInput placeholder="New category" value="{{book.category}}" [(ngModel)]="book.category">
+            <input matInput placeholder="New category" value="{{book.genre}}" [(ngModel)]="book.genre">
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="accent" (click)="editBook(book)">UPDATE</button>
+          <button mat-raised-button color="accent" (click)="deleteBook(book.id)">DELETE</button>
+        </mat-card-actions>
+      </mat-card>
+
+    </div>
+    </div>
 </ng-container>
