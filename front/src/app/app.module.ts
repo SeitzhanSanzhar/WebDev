@@ -26,9 +26,11 @@ import {MatCardModule} from '@angular/material';
 import {LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { LoginHeaderComponent } from './components/login-header/login-header.component';
-import { HomeComponent } from './components/home/home.component';
 import { NormalHeaderComponent } from './components/normal-header/normal-header.component';
-import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { HomePostsComponent } from './components/home-posts/home-posts.component';
+import { BooksComponent } from './components/books/books.component';
+import {UserDataService} from "./services/user-data.service";
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 @NgModule({
@@ -37,9 +39,10 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
     LoginComponent,
     SignupComponent,
     LoginHeaderComponent,
-    HomeComponent,
     NormalHeaderComponent,
-    SidenavComponent,
+    HomePostsComponent,
+    BooksComponent,
+    ProfileComponent,
 
   ],
   imports: [
@@ -58,10 +61,11 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
     MatCardModule,
 
 
+
     AppRoutingModule
 
   ],
-  providers: [LoginService, ApiService, ApiService, SignupService,
+  providers: [LoginService, ApiService, UserDataService, SignupService,
     <ClassProvider> {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

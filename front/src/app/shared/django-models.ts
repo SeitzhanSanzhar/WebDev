@@ -4,6 +4,7 @@ export interface Token {
 
 export interface Book {
   id: number;
+  author: string;
   name: string;
   year: number;
   category: string;
@@ -13,6 +14,7 @@ export interface Book {
 export interface Post {
   id: number;
   title: string;
+  body: string;
   created_at: Date;
 }
 

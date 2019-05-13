@@ -18,8 +18,7 @@ urlpatterns = [
     path('signup/', Signup.as_view()),
     path('users/', ListUsers.as_view()),
 
-
-
     # Home urls
     path('home/', MyPosts.as_view()),
+    path('profile/', MyPosts.as_view()),
 ]

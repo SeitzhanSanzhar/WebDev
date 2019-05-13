@@ -2,7 +2,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {LoginComponent} from "./components/login/login.component";
 import {SignupComponent} from "./components/signup/signup.component";
-import {HomeComponent} from "./components/home/home.component";
+import {HomePostsComponent} from "./components/home-posts/home-posts.component";
+import {BooksComponent} from "./components/books/books.component";
+import {ProfileComponent} from "./components/profile/profile.component";
 
 const routes: Routes = [
   {
@@ -13,7 +15,12 @@ const routes: Routes = [
 
   {path: 'login', component: LoginComponent},
   {path: 'signup', component: SignupComponent},
-  {path: 'home', component: HomeComponent},
+  {path: 'home', component: HomePostsComponent},
+  {path: 'books', component: BooksComponent},
+  {path: 'profile', component: ProfileComponent},
+
+
+
 
   // { path: 'hero/:id',      component: HeroDetailComponent },
   // {
