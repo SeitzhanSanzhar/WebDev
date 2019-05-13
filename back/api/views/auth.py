@@ -24,7 +24,7 @@ from django.db.utils import IntegrityError
 
 class ListUsers(APIView):
     def get(self, request):
-        if request.user.is_authencated:
+        if request.user.is_authenticated:
             return Response(UserSerializer(User.objects.all(), many=True).data, status=status.HTTP_200_OK)
         else:
             return Response(status=status.HTTP_403_FORBIDDEN)

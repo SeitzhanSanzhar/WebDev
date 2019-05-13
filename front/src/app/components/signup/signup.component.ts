@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FormControl } from "@angular/forms";
 import { FormGroup } from "@angular/forms";
 import { FormBuilder } from "@angular/forms";
-import { Validators } from "@angular/forms";
+import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import {SignupService} from "../../services/signup.service";
 
 import {Router} from "@angular/router";
+import {HttpErrorResponse} from "@angular/common/http";
+
+import {MatSnackBar} from '@angular/material';
+
 
 @Component({
   selector: 'app-signup',
@@ -14,18 +18,35 @@ import {Router} from "@angular/router";
 })
 export class SignupComponent implements OnInit {
 
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
+  firstFormGroup = new FormGroup({
+    username: new FormControl('')
+  });
 
-  constructor(private _formBuilder: FormBuilder, private router: Router) {}
+  secondFormGroup = new FormGroup({
+    password: new FormControl('')
+  });
+
+  thirdFormGroup = new FormGroup({
+    email: new FormControl('')
+  });
+
+
+  constructor(private _formBuilder: FormBuilder, private router: Router, private service: SignupService) {}
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
+      username: ['', Validators.required]
     });
     this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
+      email: ['', [Validators.required, Validators.email]]
+    });
+    this.thirdFormGroup = this._formBuilder.group({
+      password: ['', Validators.required]
     });
   }
 
-}
+  signup() {
+    this.service.signup(this.firstFormGroup.value['username'], this.secondFormGroup.value['email'], this.thirdFormGroup.value['password']).then(res => {localStorage.setItem('token', res.token);
+      this.router.navigate(['home'])
+  })
+}}

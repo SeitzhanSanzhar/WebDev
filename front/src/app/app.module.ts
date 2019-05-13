@@ -10,6 +10,8 @@ import { AppComponent } from './app.component';
 
 import {LoginService} from "./services/login.service";
 import {ApiService} from "./services/api.service";
+import {SignupService} from "./services/signup.service";
+
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
@@ -23,14 +25,22 @@ import {MatCardModule} from '@angular/material';
 // Components
 import {LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
-import { HeaderComponent } from './components/header/header.component'
+import { LoginHeaderComponent } from './components/login-header/login-header.component';
+import { HomeComponent } from './components/home/home.component';
+import { NormalHeaderComponent } from './components/normal-header/normal-header.component';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SignupComponent,
-    HeaderComponent,
+    LoginHeaderComponent,
+    HomeComponent,
+    NormalHeaderComponent,
+    SidenavComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -51,7 +61,7 @@ import { HeaderComponent } from './components/header/header.component'
     AppRoutingModule
 
   ],
-  providers: [LoginService, ApiService, ApiService,
+  providers: [LoginService, ApiService, ApiService, SignupService,
     <ClassProvider> {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
