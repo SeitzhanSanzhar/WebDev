@@ -10,7 +10,7 @@ class ListCreatePosts(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated]
 
     def perform_create(self, serializer):
-        serializer.save(created_by=self.request.user)
+        serializer.save(user=self.request.user)
 
 
 class RetrieveUpdateDestroyPosts(generics.RetrieveUpdateDestroyAPIView):

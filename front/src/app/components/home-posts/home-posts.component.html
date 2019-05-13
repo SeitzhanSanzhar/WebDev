@@ -1,4 +1,84 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+
 <app-normal-header></app-normal-header>
+
+
+<mat-horizontal-stepper class="" linear labelPosition="bottom" #stepper>
+
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Fill out name</ng-template>
+      <mat-form-field>
+        <input type="text" matInput placeholder="Name" formControlName="name" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Fill out author</ng-template>
+      <mat-form-field>
+        <input type="text" matInput placeholder="Author" formControlName="author" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="thirdFormGroup">
+    <form [formGroup]="thirdFormGroup">
+      <ng-template matStepLabel>Choose the year of publication</ng-template>
+      <mat-form-field>
+        <input type="number" matInput placeholder="Year" formControlName="year" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="fourthFormGroup">
+    <form [formGroup]="fourthFormGroup">
+      <ng-template matStepLabel>Write down the category</ng-template>
+      <mat-form-field>
+        <input type="text" matInput placeholder="Category" formControlName="category" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="fifthFormGroup">
+    <form [formGroup]="fifthFormGroup">
+      <ng-template matStepLabel>Choose genre</ng-template>
+      <mat-form-field>
+        <input type="text" matInput placeholder="Genre" formControlName="genre" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Finish creation</ng-template>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+      <button mat-raised-button color="accent" (click)="createBook()">Create Book</button>
+    </div>
+  </mat-step>
+
+</mat-horizontal-stepper>
+
+
+<mat-divider></mat-divider>
 
 <ng-container>
   <div *ngFor="let post of ownPosts">

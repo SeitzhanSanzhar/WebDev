@@ -25,7 +25,7 @@ urlpatterns = [
     path('profile/', ListCreateProfiles.as_view()),
     path('profile/<int:pk>/', RetrieveUpdateProfiles.as_view()),
 
-# Sending email
+    # Sending email
     path('send_email/', send_answer),
 
 
