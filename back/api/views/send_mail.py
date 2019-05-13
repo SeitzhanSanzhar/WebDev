@@ -17,6 +17,7 @@ from rest_framework.views import APIView
 
 from django.db.utils import IntegrityError
 
+
 @api_view(['POST'])
 def send_answer(request):
-    send_mail(':)',':)','kitapswap@gmail.com',['lejena@key-mail.net'],fail_silently=False)
+    send_mail(':)', ':)', 'kitapswap@gmail.com', ['lejena@key-mail.net'], fail_silently=False)

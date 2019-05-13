@@ -16,7 +16,7 @@ import {SignupService} from "./services/signup.service";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 // Material Components
-import {MatToolbarModule} from '@angular/material';
+import {MatDividerModule, MatSelectModule, MatToolbarModule} from '@angular/material';
 import {MatButtonModule} from '@angular/material';
 import {MatStepperModule} from '@angular/material';
 import {MatInputModule} from '@angular/material';
@@ -31,6 +31,7 @@ import { HomePostsComponent } from './components/home-posts/home-posts.component
 import { BooksComponent } from './components/books/books.component';
 import {UserDataService} from "./services/user-data.service";
 import { ProfileComponent } from './components/profile/profile.component';
+import { FeedComponent } from './components/feed/feed.component';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     HomePostsComponent,
     BooksComponent,
     ProfileComponent,
+    FeedComponent,
 
   ],
   imports: [
@@ -53,7 +55,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     FormsModule,
     ReactiveFormsModule,
 
-  //  Material components
+    //  Material components
     MatToolbarModule,
     MatButtonModule,
     MatStepperModule,
@@ -61,8 +63,9 @@ import { ProfileComponent } from './components/profile/profile.component';
     MatCardModule,
 
 
-
-    AppRoutingModule
+    AppRoutingModule,
+    MatDividerModule,
+    MatSelectModule
 
   ],
   providers: [LoginService, ApiService, UserDataService, SignupService,

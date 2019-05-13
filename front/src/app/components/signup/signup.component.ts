@@ -6,9 +6,7 @@ import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/form
 import {SignupService} from "../../services/signup.service";
 
 import {Router} from "@angular/router";
-import {HttpErrorResponse} from "@angular/common/http";
 
-import {MatSnackBar} from '@angular/material';
 
 
 @Component({

@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import *
-from django.urls import path, include
+from django.urls import path
 
 
 urlpatterns = [
@@ -16,12 +16,17 @@ urlpatterns = [
     path('login/', login),
     path('logout/', logout),
     path('signup/', Signup.as_view()),
-    path('users/', ListUsers.as_view()),
 
-    #mail
-    path('send_mail/', send_answer),
+    # For debugging
+    path('users/', ListUsers.as_view()),
 
     # Home urls
     path('home/', MyPosts.as_view()),
-    path('profile/', MyPosts.as_view()),
+    path('profile/', ListCreateProfiles.as_view()),
+    path('profile/<int:pk>/', RetrieveUpdateProfiles.as_view()),
+
+# Sending email
+    path('send_email/', send_answer),
+
+
 ]

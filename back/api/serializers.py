@@ -11,6 +11,18 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('id', 'username', 'password', 'email')
 
 
+class ProfileSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(read_only=True)
+    user_id = serializers.IntegerField(read_only=True)
+    bio = serializers.CharField(required=False)
+    location = serializers.CharField(required=False)
+    birth_date = serializers.CharField(required=False)
+
+    class Meta:
+        model = User
+        fields = '__all__'
+
+
 class BookSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
     name = serializers.CharField(max_length=200, required=True)
@@ -25,11 +37,15 @@ class BookSerializer(serializers.ModelSerializer):
 
 class PostSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
-
-    # Use id references for testing. Change back to proper serializers when done
     book_id = serializers.IntegerField(write_only=True)
-    user_id = serializers.IntegerField(read_only=True)
+    user_id = serializers.IntegerField(write_only=True)
 
     class Meta:
         model = Post
         fields = '__all__'
+
+
+
+
+
+
