@@ -19,4 +19,12 @@ export interface Post {
   user: number;
 }
 
+export interface Profile {
+  id: number;
+  bio: string;
+  location: string;
+  birth_date: Date;
+  user: number;
+}
+
 

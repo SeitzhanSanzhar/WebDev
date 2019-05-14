@@ -39,7 +39,15 @@ export class CreateDataService extends ApiService {
   updatePost(post): Promise<any> {
     return this.put(`http://localhost:8000/api/posts/${post.id}/`, {
       title: post.title,
-      body: post.body,});
+      body: post.body});
+  }
+
+  updateProfile(profile): Promise<any> {
+    return this.put(`http://localhost:8000/api/profile/${profile.id}/`, {
+      bio: profile.bio,
+      location: profile.location,
+      birth_date: profile.birth_date,
+    user: profile.user});
   }
 
 }

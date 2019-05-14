@@ -12,7 +12,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     birth_date = serializers.CharField(required=False)
 
     class Meta:
-        model = User
+        model = Profile
         fields = '__all__'
 
 

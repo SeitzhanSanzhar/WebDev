@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Book, Post} from "../shared/django-models";
+import {Book, Post, Profile} from "../shared/django-models";
 import {ApiService} from "./api.service";
 
 @Injectable({
@@ -15,5 +15,9 @@ export class UserDataService {
 
   getOwnBooks(): Promise<Book[]> {
     return this.apiService.get('http://localhost:8000/api/books/',  {});
+  }
+
+  getProfile(): Promise<Profile[]>  {
+    return this.apiService.get('http://localhost:8000/api/profile/',  {});
   }
 }

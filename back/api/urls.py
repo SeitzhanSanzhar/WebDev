@@ -22,7 +22,7 @@ urlpatterns = [
 
     # Home urls
     path('home/', MyPosts.as_view()),
-    path('profile/', ListCreateProfiles.as_view()),
+    path('profile/', ListProfiles.as_view()),
     path('profile/<int:pk>/', RetrieveUpdateProfiles.as_view()),
 
     # Sending email
