@@ -41,7 +41,7 @@ export class BooksComponent implements OnInit {
   createBook() {
     this.createDataService.createBook(this.firstFormGroup.value['name'],
       this.secondFormGroup.value['author'],
-      this.thirdFormGroup.value['year'],
+      this.thirdFormGroup.value['year'].substring(0, 4),
       this.fourthFormGroup.value['category'],
       this.fifthFormGroup.value['genre']).then(res => {this.ownBooks.push(res)});
   }

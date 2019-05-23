@@ -33,7 +33,7 @@
     <form [formGroup]="thirdFormGroup">
       <ng-template matStepLabel>Choose the year of publication</ng-template>
       <mat-form-field>
-          <input type="number" matInput placeholder="Year" formControlName="year" required>
+          <input type="date" matInput placeholder="Year" formControlName="year" required>
       </mat-form-field>
       <div>
         <button mat-button matStepperNext>Next</button>
@@ -120,7 +120,7 @@
           </mat-card-title>
           <mat-card-subtitle>
             <input matInput placeholder="New author" value="{{book.author}}" [(ngModel)]="book.author">
-            <input matInput type="number" placeholder="New year" value="{{book.year}}" [(ngModel)]="book.year">
+            <input matInput type="date" placeholder="New year" value="{{book.year}}" [(ngModel)]="book.year">
           </mat-card-subtitle>
 
         </mat-card-header>
