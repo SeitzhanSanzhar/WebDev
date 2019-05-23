@@ -26,5 +26,5 @@ def send_answer(request):
     res = ''
     for i in user:
         res = i.email
-    send_mail(':)', ':)', 'kitapswap@gmail.com', [res], fail_silently=False)
+    send_mail('Kitap swap', 'user wants to exchange book', 'kitapswap@gmail.com', [res], fail_silently=False)
     return Response('request was send')

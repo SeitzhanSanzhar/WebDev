@@ -24,8 +24,7 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     book = models.ForeignKey(Book, on_delete=models.CASCADE, default=None, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=None, null=True)
-
-    # image = models.ImageField(upload_to='post_images')
+    image = models.ImageField(upload_to='post_images', default = 'post_images/208994.jpg')
 
 
 class Profile(models.Model):
@@ -44,7 +43,3 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
-
-
-
-
