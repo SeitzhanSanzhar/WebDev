@@ -24,7 +24,7 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     book = models.ForeignKey(Book, on_delete=models.CASCADE, default=None, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=None, null=True)
-    image = models.ImageField(upload_to='post_images', default = 'post_images/208994.jpg')
+    image = models.ImageField(upload_to='post_images', default = 'post_images/default.jpg')
 
 
 class Profile(models.Model):

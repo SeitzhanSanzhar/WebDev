@@ -17,6 +17,7 @@ export interface Post {
   body: string;
   created_at: Date;
   user: number;
+  image: string;
 }
 
 export interface Profile {
@@ -26,5 +27,3 @@ export interface Profile {
   birth_date: Date;
   user: number;
 }
-
-

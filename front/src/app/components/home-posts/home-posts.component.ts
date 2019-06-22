@@ -13,6 +13,7 @@ export class HomePostsComponent implements OnInit {
 
   public ownPosts: Post[] = [];
   public ownBooks: Book[] = [];
+  public image: string;
 
   edittedId: number = 0;
 

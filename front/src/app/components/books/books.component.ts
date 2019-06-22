@@ -59,6 +59,7 @@ export class BooksComponent implements OnInit {
   }
 
   editBook(book: Book) {
+    //book.year = book.year.substring(0,4);
     this.createDataService.updateBook(book).then( res => {
       this.edittedId = 0;
     });

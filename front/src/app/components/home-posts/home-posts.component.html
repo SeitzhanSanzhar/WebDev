@@ -71,10 +71,9 @@
 
           <mat-card-title>{{post.title}}</mat-card-title>
           <mat-card-subtitle>{{post.user}}</mat-card-subtitle>
-
+          <!--<img style="background-image: {{post.image}}"/>-->
         </mat-card-header>
-        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
-
+        <img mat-card-image src="{{post.image}}">
         <mat-card-content>
           <p>
             {{post.body}}
@@ -100,7 +99,7 @@
           <mat-card-subtitle>{{post.user}}</mat-card-subtitle>
 
         </mat-card-header>
-        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
+        <img mat-card-image src="{{post.image}}">
 
         <mat-card-content>
           <p>
@@ -117,7 +116,3 @@
   </div>
 
 </ng-container>
-
-
-
-
