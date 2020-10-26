@@ -6,5 +6,4 @@
 
 ### Team Members
 * [Seitzhan Sanzhar](https://github.com/SeitzhanSanzhar)
-* [Izbassarov Tleusher](https://github.com/neotokyo2019)
 * [Mynzhassar Dias](https://github.com/Mynzhassar/webdev2019)
